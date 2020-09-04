@@ -13,7 +13,6 @@
 # limitations under the License.
 
 import collections
-import errno
 import functools
 import json
 import os
@@ -1336,9 +1335,9 @@ class TestRetryOnEINTR(unittest.TestCase):
     def test_recv(self):
         client = self.make_client([
             b'VALUE ',
-            OSError(errno.EINTR, "Interrupted system call"),
+            InterruptedError("Interrupted system call"),
             b'key1 0 6\r\nval',
-            OSError(errno.EINTR, "Interrupted system call"),
+            InterruptedError("Interrupted system call"),
             b'ue1\r\nEND\r\n',
         ])
         assert client[b'key1'] == b'value1'

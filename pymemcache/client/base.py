@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import errno
 import socket
 
 from pymemcache import pool
@@ -1351,6 +1350,5 @@ def _recv(sock, size):
     while True:
         try:
             return sock.recv(size)
-        except OSError as e:
-            if e.errno != errno.EINTR:
-                raise
+        except InterruptedError:
+            pass
