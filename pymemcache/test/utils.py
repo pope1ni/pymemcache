@@ -15,10 +15,7 @@ from pymemcache.client.base import check_key_helper
 
 
 class MockMemcacheClient:
-    """
-    A (partial) in-memory mock for Clients.
-
-    """
+    """A (partial) in-memory mock for Clients."""
 
     def __init__(self,
                  server=None,

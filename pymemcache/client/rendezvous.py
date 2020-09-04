@@ -11,9 +11,7 @@ class RendezvousHash:
         Copyright (c) 2014 Ernest W. Durbin III
     """
     def __init__(self, nodes=None, seed=0, hash_function=murmur3_32):
-        """
-        Constructor.
-        """
+        """Constructor."""
         self.nodes = []
         self.seed = seed
         if nodes is not None:
