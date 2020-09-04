@@ -59,16 +59,16 @@ def _parse_hex(value):
 
 STAT_TYPES = {
     # General stats
-    b'version': six.binary_type,
+    b'version': bytes,
     b'rusage_user': _parse_float,
     b'rusage_system': _parse_float,
     b'hash_is_expanding': _parse_bool_int,
     b'slab_reassign_running': _parse_bool_int,
 
     # Settings stats
-    b'inter': six.binary_type,
+    b'inter': bytes,
     b'growth_factor': float,
-    b'stat_key_prefix': six.binary_type,
+    b'stat_key_prefix': bytes,
     b'umask': _parse_hex,
     b'detail_enabled': _parse_bool_int,
     b'cas_enabled': _parse_bool_int,
@@ -88,7 +88,7 @@ def check_key_helper(key, allow_unicode_keys, key_prefix=b''):
             key = key.encode('utf8')
     elif isinstance(key, six.string_types):
         try:
-            if isinstance(key, six.binary_type):
+            if isinstance(key, bytes):
                 key = key.decode().encode('ascii')
             else:
                 key = key.encode('ascii')
@@ -284,7 +284,7 @@ class Client(object):
         self.sock = None
         if isinstance(key_prefix, six.text_type):
             key_prefix = key_prefix.encode('ascii')
-        if not isinstance(key_prefix, six.binary_type):
+        if not isinstance(key_prefix, bytes):
             raise TypeError("key_prefix should be bytes.")
         self.key_prefix = key_prefix
         self.default_noreply = default_noreply
@@ -850,7 +850,7 @@ class Client(object):
             except UnicodeEncodeError:
                 raise MemcacheIllegalInputError(
                     'non-ASCII cas value: %r' % cas)
-        elif not isinstance(cas, six.binary_type):
+        elif not isinstance(cas, bytes):
             raise MemcacheIllegalInputError(
                 'cas must be integer, string, or bytes, got bad value: %r' % cas
             )
@@ -951,7 +951,7 @@ class Client(object):
             if flags is not None:
                 data_flags = flags
 
-            if not isinstance(data, six.binary_type):
+            if not isinstance(data, bytes):
                 try:
                     data = six.text_type(data).encode(self.encoding)
                 except UnicodeEncodeError as e:
@@ -1078,7 +1078,7 @@ class PooledClient(object):
         self.allow_unicode_keys = allow_unicode_keys
         if isinstance(key_prefix, six.text_type):
             key_prefix = key_prefix.encode('ascii')
-        if not isinstance(key_prefix, six.binary_type):
+        if not isinstance(key_prefix, bytes):
             raise TypeError("key_prefix should be bytes.")
         self.key_prefix = key_prefix
         self.client_pool = pool.ObjectPool(
