@@ -16,7 +16,7 @@ from functools import partial
 import logging
 from io import BytesIO
 import six
-from six.moves import cPickle as pickle
+import pickle
 
 try:
     long_type = long  # noqa

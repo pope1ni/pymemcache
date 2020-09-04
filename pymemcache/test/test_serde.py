@@ -7,7 +7,7 @@ from pymemcache.serde import (pickle_serde,
                               FLAG_PICKLE, FLAG_INTEGER, FLAG_LONG, FLAG_TEXT)
 import pytest
 import six
-from six.moves import cPickle as pickle
+import pickle
 
 
 class CustomInt(int):
