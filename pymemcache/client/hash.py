@@ -282,14 +282,14 @@ class HashClient:
             if not self.ignore_exc:
                 raise
 
-            return list(set(values.keys()) - set(succeeded))
+            return list(set(values) - set(succeeded))
         except Exception:
             # any exceptions that aren't OSError we need to handle
             # gracefully as well
             if not self.ignore_exc:
                 raise
 
-            return list(set(values.keys()) - set(succeeded))
+            return list(set(values) - set(succeeded))
 
     def _mark_failed_server(self, server):
         # This client has never failed, lets mark it for failure
