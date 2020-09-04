@@ -18,10 +18,10 @@ import errno
 import functools
 import json
 import os
-import mock
 import re
 import socket
 import unittest
+from unittest import mock
 
 import pytest
 

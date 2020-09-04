@@ -7,8 +7,8 @@ from .test_client import ClientTestMixin, MockSocket
 import unittest
 import os
 import pytest
-import mock
 import socket
+from unittest import mock
 
 
 class TestHashClient(ClientTestMixin, unittest.TestCase):
