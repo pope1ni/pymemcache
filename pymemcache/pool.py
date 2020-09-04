@@ -14,10 +14,7 @@
 
 import collections
 import contextlib
-import sys
 import threading
-
-import six
 
 
 class ObjectPool(object):
@@ -53,12 +50,11 @@ class ObjectPool(object):
         try:
             yield obj
         except Exception:
-            exc_info = sys.exc_info()
             if not destroy_on_fail:
                 self.release(obj)
             else:
                 self.destroy(obj)
-            six.reraise(exc_info[0], exc_info[1], exc_info[2])
+            raise
         self.release(obj)
 
     def get(self):
