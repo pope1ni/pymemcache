@@ -14,9 +14,9 @@
 
 import collections
 import functools
+import ipaddress
 import json
 import os
-import re
 import socket
 import unittest
 from unittest import mock
@@ -49,10 +49,14 @@ class MockSocket:
 
     @property
     def family(self):
-        # TODO: Use ipaddress module when dropping support for Python < 3.3
-        ipv6_re = re.compile(r'^[0-9a-f:]+$')
-        is_ipv6 = any(ipv6_re.match(c[0]) for c in self.connections)
-        return socket.AF_INET6 if is_ipv6 else socket.AF_INET
+        for host, *_ in self.connections:
+            try:
+                ipaddress.IPv6Address(host)
+            except ipaddress.AddressValueError:
+                continue
+            else:
+                return socket.AF_INET6
+        return socket.AF_INET
 
     def sendall(self, value):
         self.send_bufs.append(value)
