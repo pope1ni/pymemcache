@@ -86,7 +86,7 @@ def check_key_helper(key, allow_unicode_keys, key_prefix=b''):
     if allow_unicode_keys:
         if isinstance(key, str):
             key = key.encode('utf8')
-    elif isinstance(key, six.string_types):
+    elif isinstance(key, str):
         try:
             if isinstance(key, bytes):
                 key = key.decode().encode('ascii')
@@ -114,7 +114,7 @@ def normalize_server_spec(server):
         return server
     if isinstance(server, list):
         return tuple(server)  # Assume [host, port] provided.
-    if not isinstance(server, six.string_types):
+    if not isinstance(server, str):
         raise ValueError('Unknown server provided: %r' % server)
     if server.startswith('unix:'):
         return server[5:]
@@ -844,7 +844,7 @@ class Client(object):
         The value will be (re)encoded so that we can accept strings or bytes.
         """
         # convert non-binary values to binary
-        if isinstance(cas, (six.integer_types, six.string_types)):
+        if isinstance(cas, (six.integer_types, str)):
             try:
                 cas = str(cas).encode(self.encoding)
             except UnicodeEncodeError:

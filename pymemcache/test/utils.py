@@ -85,7 +85,7 @@ class MockMemcacheClient(object):
 
     def set(self, key, value, expire=0, noreply=True, flags=None):
         key = self.check_key(key)
-        if (isinstance(value, six.string_types) and
+        if (isinstance(value, str) and
                 not isinstance(value, bytes)):
             try:
                 value = value.encode(self.encoding)
@@ -145,7 +145,7 @@ class MockMemcacheClient(object):
     def prepend(self, key, value, expire=0, noreply=True, flags=None):
         current = self.get(key)
         if current is not None:
-            if (isinstance(value, six.string_types) and
+            if (isinstance(value, str) and
                     not isinstance(value, bytes)):
                 try:
                     value = value.encode(self.encoding)
@@ -157,7 +157,7 @@ class MockMemcacheClient(object):
     def append(self, key, value, expire=0, noreply=True, flags=None):
         current = self.get(key)
         if current is not None:
-            if (isinstance(value, six.string_types) and
+            if (isinstance(value, str) and
                     not isinstance(value, bytes)):
                 try:
                     value = value.encode(self.encoding)

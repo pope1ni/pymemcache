@@ -116,11 +116,11 @@ class HashClient(object):
         # To maintain backward compatibility, if a port is provided, assume
         # that server wasn't provided as a (host, port) tuple.
         if port is not None:
-            if not isinstance(server, six.string_types):
+            if not isinstance(server, str):
                 raise TypeError('Server must be a string when passing port.')
             server = (server, port)
 
-        if isinstance(server, six.string_types):
+        if isinstance(server, str):
             key = server
         else:
             key = '%s:%s' % server
@@ -137,11 +137,11 @@ class HashClient(object):
         # To maintain backward compatibility, if a port is provided, assume
         # that server wasn't provided as a (host, port) tuple.
         if port is not None:
-            if not isinstance(server, six.string_types):
+            if not isinstance(server, str):
                 raise TypeError('Server must be a string when passing port.')
             server = (server, port)
 
-        if isinstance(server, six.string_types):
+        if isinstance(server, str):
             key = server
         else:
             key = '%s:%s' % server
