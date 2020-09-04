@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
 from pymemcache.serde import (pickle_serde,
