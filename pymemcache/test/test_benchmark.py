@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import six
 import time
 import pytest
 
@@ -79,14 +78,14 @@ def benchmark(count, func, *args, **kwargs):
 
 @pytest.mark.benchmark()
 def test_bench_get(request, client, pairs, count):
-    key, value = six.next(iter(pairs.items()))
+    key, value = next(iter(pairs.items()))
     client.set(key, value)
     benchmark(count, client.get, key)
 
 
 @pytest.mark.benchmark()
 def test_bench_set(request, client, pairs, count):
-    key, value = six.next(iter(pairs.items()))
+    key, value = next(iter(pairs.items()))
     benchmark(count, client.set, key, value)
 
 
@@ -103,7 +102,7 @@ def test_bench_set_multi(request, client, pairs, count):
 
 @pytest.mark.benchmark()
 def test_bench_delete(request, client, pairs, count):
-    benchmark(count, client.delete, six.next(iter(pairs.keys())))
+    benchmark(count, client.delete, next(iter(pairs.keys())))
 
 
 @pytest.mark.benchmark()
