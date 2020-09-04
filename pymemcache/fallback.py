@@ -49,7 +49,7 @@ class FallbackClient:
         self.caches = caches
 
     def close(self):
-        "Close each of the memcached clients"
+        """Close each of the memcached clients"""
         for cache in self.caches:
             cache.close()
 

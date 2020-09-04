@@ -1,5 +1,5 @@
 class MemcacheError(Exception):
-    "Base exception class"
+    """Base exception class"""
 
 
 class MemcacheClientError(MemcacheError):
@@ -40,4 +40,4 @@ class MemcacheUnknownError(MemcacheError):
 
 
 class MemcacheUnexpectedCloseError(MemcacheServerError):
-    "Raised when the connection with memcached closes unexpectedly."
+    """Raised when the connection with memcached closes unexpectedly."""
