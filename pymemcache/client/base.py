@@ -13,7 +13,6 @@
 # limitations under the License.
 import errno
 import socket
-import six
 
 from pymemcache import pool
 
@@ -399,7 +398,7 @@ class Client(object):
         if noreply is None:
             noreply = self.default_noreply
         result = self._store_cmd(b'set', values, expire, noreply, flags=flags)
-        return [k for k, v in six.iteritems(result) if not v]
+        return [k for k, v in result.items() if not v]
 
     set_multi = set_many
 
@@ -739,7 +738,7 @@ class Client(object):
         """
         result = self._fetch_cmd(b'stats', args, False)
 
-        for key, value in six.iteritems(result):
+        for key, value in result.items():
             converter = STAT_TYPES.get(key, int)
             try:
                 result[key] = converter(value)
@@ -939,7 +938,7 @@ class Client(object):
             extra += b' noreply'
         expire = self._check_integer(expire, "expire")
 
-        for key, data in six.iteritems(values):
+        for key, data in values.items():
             # must be able to reliably map responses back to the original order
             keys.append(key)
 

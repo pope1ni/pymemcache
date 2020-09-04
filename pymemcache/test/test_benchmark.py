@@ -79,14 +79,14 @@ def benchmark(count, func, *args, **kwargs):
 
 @pytest.mark.benchmark()
 def test_bench_get(request, client, pairs, count):
-    key, value = six.next(six.iteritems(pairs))
+    key, value = six.next(iter(pairs.items()))
     client.set(key, value)
     benchmark(count, client.get, key)
 
 
 @pytest.mark.benchmark()
 def test_bench_set(request, client, pairs, count):
-    key, value = six.next(six.iteritems(pairs))
+    key, value = six.next(iter(pairs.items()))
     benchmark(count, client.set, key, value)
 
 

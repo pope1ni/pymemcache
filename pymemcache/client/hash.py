@@ -2,7 +2,6 @@ import collections
 import socket
 import time
 import logging
-import six
 
 from pymemcache.client.base import (
     Client,
@@ -340,7 +339,7 @@ class HashClient(object):
         succeeded = []
 
         try:
-            for key, value in six.iteritems(values):
+            for key, value in values.items():
                 result = client.set(key, value, *args, **kwargs)
                 if result:
                     succeeded.append(key)
@@ -373,7 +372,7 @@ class HashClient(object):
         client_batches = collections.defaultdict(dict)
         failed = []
 
-        for key, value in six.iteritems(values):
+        for key, value in values.items():
             client = self._get_client(key)
 
             if client is None:

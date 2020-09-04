@@ -7,7 +7,6 @@ This module is considered public API.
 
 import time
 
-import six
 import socket
 
 from pymemcache.exceptions import MemcacheClientError, MemcacheIllegalInputError
@@ -102,7 +101,7 @@ class MockMemcacheClient(object):
 
     def set_many(self, values, expire=0, noreply=True, flags=None):
         result = []
-        for key, value in six.iteritems(values):
+        for key, value in values.items():
             ret = self.set(key, value, expire, noreply, flags=flags)
             if not ret:
                 result.append(key)
