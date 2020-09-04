@@ -1351,6 +1351,6 @@ def _recv(sock, size):
     while True:
         try:
             return sock.recv(size)
-        except IOError as e:
+        except OSError as e:
             if e.errno != errno.EINTR:
                 raise
