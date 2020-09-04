@@ -15,13 +15,7 @@
 from functools import partial
 import logging
 from io import BytesIO
-import six
 import pickle
-
-try:
-    long_type = long  # noqa
-except NameError:
-    long_type = None
 
 
 FLAG_BYTES = 0
@@ -83,14 +77,8 @@ def python_memcache_deserializer(key, value, flags):
     elif flags & FLAG_TEXT:
         return value.decode('utf8')
 
-    elif flags & FLAG_INTEGER:
+    elif flags & FLAG_INTEGER or flags & FLAG_LONG:
         return int(value)
-
-    elif flags & FLAG_LONG:
-        if six.PY3:
-            return int(value)
-        else:
-            return long_type(value)
 
     elif flags & FLAG_PICKLE:
         try:
