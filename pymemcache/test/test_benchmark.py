@@ -103,7 +103,7 @@ def test_bench_set_multi(request, client, pairs, count):
 
 @pytest.mark.benchmark()
 def test_bench_delete(request, client, pairs, count):
-    benchmark(count, client.delete, six.next(six.iterkeys(pairs)))
+    benchmark(count, client.delete, six.next(iter(pairs.keys())))
 
 
 @pytest.mark.benchmark()
