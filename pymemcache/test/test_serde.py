@@ -31,7 +31,7 @@ class TestSerde(TestCase):
         # pymemcache stores values as byte strings, so we immediately the value
         # if needed so deserialized works as it would with a real server
         if not isinstance(serialized, bytes):
-            serialized = six.text_type(serialized).encode('ascii')
+            serialized = str(serialized).encode('ascii')
 
         deserialized = self.serde.deserialize(b'key', serialized, flags)
         assert deserialized == value

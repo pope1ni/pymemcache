@@ -84,7 +84,7 @@ STAT_TYPES = {
 def check_key_helper(key, allow_unicode_keys, key_prefix=b''):
     """Checks key and add key_prefix."""
     if allow_unicode_keys:
-        if isinstance(key, six.text_type):
+        if isinstance(key, str):
             key = key.encode('utf8')
     elif isinstance(key, six.string_types):
         try:
@@ -282,7 +282,7 @@ class Client(object):
         self.ignore_exc = ignore_exc
         self.socket_module = socket_module
         self.sock = None
-        if isinstance(key_prefix, six.text_type):
+        if isinstance(key_prefix, str):
             key_prefix = key_prefix.encode('ascii')
         if not isinstance(key_prefix, bytes):
             raise TypeError("key_prefix should be bytes.")
@@ -835,7 +835,7 @@ class Client(object):
                 '%s must be integer, got bad value: %r' % (name, value)
             )
 
-        return six.text_type(value).encode(self.encoding)
+        return str(value).encode(self.encoding)
 
     def _check_cas(self, cas):
         """Check that a value is a valid input for 'cas' -- either an int or a
@@ -846,7 +846,7 @@ class Client(object):
         # convert non-binary values to binary
         if isinstance(cas, (six.integer_types, six.string_types)):
             try:
-                cas = six.text_type(cas).encode(self.encoding)
+                cas = str(cas).encode(self.encoding)
             except UnicodeEncodeError:
                 raise MemcacheIllegalInputError(
                     'non-ASCII cas value: %r' % cas)
@@ -953,15 +953,15 @@ class Client(object):
 
             if not isinstance(data, bytes):
                 try:
-                    data = six.text_type(data).encode(self.encoding)
+                    data = str(data).encode(self.encoding)
                 except UnicodeEncodeError as e:
                     raise MemcacheIllegalInputError(
                             "Data values must be binary-safe: %s" % e)
 
             cmds.append(name + b' ' + key + b' ' +
-                        six.text_type(data_flags).encode(self.encoding) +
+                        str(data_flags).encode(self.encoding) +
                         b' ' + expire +
-                        b' ' + six.text_type(len(data)).encode(self.encoding) +
+                        b' ' + str(len(data)).encode(self.encoding) +
                         extra + b'\r\n' + data + b'\r\n')
 
         if self.sock is None:
@@ -1076,7 +1076,7 @@ class PooledClient(object):
         self.socket_module = socket_module
         self.default_noreply = default_noreply
         self.allow_unicode_keys = allow_unicode_keys
-        if isinstance(key_prefix, six.text_type):
+        if isinstance(key_prefix, str):
             key_prefix = key_prefix.encode('ascii')
         if not isinstance(key_prefix, bytes):
             raise TypeError("key_prefix should be bytes.")

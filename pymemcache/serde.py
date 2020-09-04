@@ -49,7 +49,7 @@ def _python_memcache_serializer(key, value, pickle_version=None):
     if value_type is bytes:
         pass
 
-    elif value_type is six.text_type:
+    elif value_type is str:
         flags |= FLAG_TEXT
         value = value.encode('utf8')
 
