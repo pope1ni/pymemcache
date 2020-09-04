@@ -342,8 +342,10 @@ class Client:
         self.sock = sock
 
     def close(self):
-        """Close the connection to memcached, if it is open. The next call to a
-        method that requires a connection will re-open it."""
+        """
+        Close the connection to memcached, if it is open. The next call to a
+        method that requires a connection will re-open it.
+        """
         if self.sock is not None:
             try:
                 self.sock.close()
