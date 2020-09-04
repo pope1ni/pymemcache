@@ -84,8 +84,7 @@ class MockMemcacheClient:
 
     def set(self, key, value, expire=0, noreply=True, flags=None):
         key = self.check_key(key)
-        if (isinstance(value, str) and
-                not isinstance(value, bytes)):
+        if isinstance(value, str):
             try:
                 value = value.encode(self.encoding)
             except (UnicodeEncodeError, UnicodeDecodeError):
@@ -144,8 +143,7 @@ class MockMemcacheClient:
     def prepend(self, key, value, expire=0, noreply=True, flags=None):
         current = self.get(key)
         if current is not None:
-            if (isinstance(value, str) and
-                    not isinstance(value, bytes)):
+            if isinstance(value, str):
                 try:
                     value = value.encode(self.encoding)
                 except (UnicodeEncodeError, UnicodeDecodeError):
@@ -156,8 +154,7 @@ class MockMemcacheClient:
     def append(self, key, value, expire=0, noreply=True, flags=None):
         current = self.get(key)
         if current is not None:
-            if (isinstance(value, str) and
-                    not isinstance(value, bytes)):
+            if isinstance(value, str):
                 try:
                     value = value.encode(self.encoding)
                 except (UnicodeEncodeError, UnicodeDecodeError):
