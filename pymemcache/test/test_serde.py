@@ -15,7 +15,6 @@ class CustomInt(int):
     Entirely useless, but used to show that built in types get serialized and
     deserialized back as the same type of object.
     """
-    pass
 
 
 @pytest.mark.unit()

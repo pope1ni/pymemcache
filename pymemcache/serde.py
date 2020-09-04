@@ -109,6 +109,7 @@ class PickleSerde:
     For more details on the serialization protocol, see the class documentation
     for :py:class:`pymemcache.client.base.Client`
     """
+
     def __init__(self, pickle_version=DEFAULT_PICKLE_VERSION):
         self._serialize_func = get_python_memcache_serializer(pickle_version)
 
@@ -129,6 +130,7 @@ class LegacyWrappingSerde:
     The serializer_func and deserializer_func are expected to be None in the
     case that they are missing.
     """
+
     def __init__(self, serializer_func, deserializer_func):
         self.serialize = serializer_func or self._default_serialize
         self.deserialize = deserializer_func or self._default_deserialize

@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 class HashClient:
     """A client for communicating with a cluster of memcached servers"""
+
     #: :class:`Client` class used to create new clients
     client_class = Client
 

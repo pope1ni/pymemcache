@@ -810,6 +810,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
 
         class _OneLike:
             """object that looks similar to the int 1"""
+
             def __str__(self):
                 return "1"
 
