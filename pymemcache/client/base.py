@@ -1301,7 +1301,7 @@ def _readline(sock, buf):
 
         buf = _recv(sock, RECV_SIZE)
         if not buf:
-            raise MemcacheUnexpectedCloseError()
+            raise MemcacheUnexpectedCloseError
 
 
 def _readvalue(sock, buf, size):
@@ -1332,7 +1332,7 @@ def _readvalue(sock, buf, size):
             chunks.append(buf)
         buf = _recv(sock, RECV_SIZE)
         if not buf:
-            raise MemcacheUnexpectedCloseError()
+            raise MemcacheUnexpectedCloseError
 
     # Now we need to remove the \r\n from the end. There are two cases we care
     # about: the \r\n is all in the last buffer, or only the \n is in the last
