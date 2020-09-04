@@ -215,7 +215,7 @@ class HashClient(object):
 
         # Connecting to the server fail, we should enter
         # retry mode
-        except socket.error:
+        except OSError:
             self._mark_failed_server(client.server)
 
             # if we haven't enabled ignore_exc, don't move on gracefully, just
@@ -225,7 +225,7 @@ class HashClient(object):
 
             return default_val
         except Exception:
-            # any exceptions that aren't socket.error we need to handle
+            # any exceptions that aren't OSError we need to handle
             # gracefully as well
             if not self.ignore_exc:
                 raise
@@ -274,7 +274,7 @@ class HashClient(object):
 
         # Connecting to the server fail, we should enter
         # retry mode
-        except socket.error:
+        except OSError:
             self._mark_failed_server(client.server)
 
             # if we haven't enabled ignore_exc, don't move on gracefully, just
@@ -284,7 +284,7 @@ class HashClient(object):
 
             return list(set(values.keys()) - set(succeeded))
         except Exception:
-            # any exceptions that aren't socket.error we need to handle
+            # any exceptions that aren't OSError we need to handle
             # gracefully as well
             if not self.ignore_exc:
                 raise

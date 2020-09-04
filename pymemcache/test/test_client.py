@@ -1336,9 +1336,9 @@ class TestRetryOnEINTR(unittest.TestCase):
     def test_recv(self):
         client = self.make_client([
             b'VALUE ',
-            socket.error(errno.EINTR, "Interrupted system call"),
+            OSError(errno.EINTR, "Interrupted system call"),
             b'key1 0 6\r\nval',
-            socket.error(errno.EINTR, "Interrupted system call"),
+            OSError(errno.EINTR, "Interrupted system call"),
             b'ue1\r\nEND\r\n',
         ])
         assert client[b'key1'] == b'value1'

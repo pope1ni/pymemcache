@@ -217,7 +217,7 @@ class Client(object):
       * :class:`pymemcache.exceptions.MemcacheUnexpectedCloseError`
       * :class:`pymemcache.exceptions.MemcacheIllegalInputError`
       * :class:`socket.timeout`
-      * :class:`socket.error`
+      * :class:`OSError`
 
      Instances of this class maintain a persistent connection to memcached
      which is terminated when any of these exceptions are raised. The next

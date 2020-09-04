@@ -206,7 +206,7 @@ class TestHashClient(ClientTestMixin, unittest.TestCase):
             retry_attempts=0, timeout=1, connect_timeout=1
         )
 
-        with pytest.raises(socket.error):
+        with pytest.raises(OSError):
             client.get('foo')
 
     def test_no_servers_left_with_commands_return_default_value(self):
