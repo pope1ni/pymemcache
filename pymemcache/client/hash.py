@@ -15,7 +15,7 @@ from pymemcache.exceptions import MemcacheError
 logger = logging.getLogger(__name__)
 
 
-class HashClient(object):
+class HashClient:
     """
     A client for communicating with a cluster of memcached servers
     """

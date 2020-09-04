@@ -110,7 +110,7 @@ Serialization
      import json
      from pymemcache.client.base import Client
 
-     class JsonSerde(object):
+     class JsonSerde:
          def serialize(self, key, value):
              if isinstance(value, str):
                  return value, 1
@@ -135,7 +135,7 @@ pymemcache provides a default
     from pymemcache.client.base import Client
     from pymemcache import serde
 
-    class Foo(object):
+    class Foo:
       pass
 
     client = Client('localhost', serde=serde.pickle_serde)
@@ -160,7 +160,7 @@ the `JsonSerde` from above which is more careful with encodings:
 
 .. code-block:: python
 
-     class JsonSerde(object):
+     class JsonSerde:
          def serialize(self, key, value):
              if isinstance(value, str):
                  return value.encode('utf-8'), 1

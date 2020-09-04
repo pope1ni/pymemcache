@@ -36,7 +36,7 @@ from pymemcache import pool
 from pymemcache.test.utils import MockMemcacheClient
 
 
-class MockSocket(object):
+class MockSocket:
     def __init__(self, recv_bufs, connect_failure=None, close_failure=None):
         self.recv_bufs = collections.deque(recv_bufs)
         self.send_bufs = []
@@ -80,7 +80,7 @@ class MockSocket(object):
         self.socket_options.append((level, option, value))
 
 
-class MockUnixSocketServer(object):
+class MockUnixSocketServer:
     def __init__(self, socket_path):
         if os.path.exists(socket_path):
             os.remove(socket_path)
@@ -97,7 +97,7 @@ class MockUnixSocketServer(object):
         os.remove(self.socket_path)
 
 
-class MockSocketModule(object):
+class MockSocketModule:
     def __init__(self, connect_failure=None, close_failure=None):
         self.connect_failure = connect_failure
         self.close_failure = close_failure
@@ -123,7 +123,7 @@ class CustomizedClient(Client):
 
 
 @pytest.mark.unit()
-class ClientTestMixin(object):
+class ClientTestMixin:
     def make_client(self, mock_socket_values, **kwargs):
         client = Client(None, **kwargs)
         # mock out client._connect() rather than hard-settting client.sock to
@@ -670,7 +670,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
         assert result is False
 
     def test_serialization(self):
-        class JsonSerde(object):
+        class JsonSerde:
             def serialize(self, key, value):
                 return json.dumps(value).encode('ascii'), 0
 
@@ -804,7 +804,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
     def test_set_key_with_noninteger_expire(self):
         client = self.make_client([b''])
 
-        class _OneLike(object):
+        class _OneLike:
             """object that looks similar to the int 1"""
             def __str__(self):
                 return "1"
@@ -1243,7 +1243,7 @@ class TestMockClient(ClientTestMixin, unittest.TestCase):
         assert result == b'value'
 
     def test_deserialization(self):
-        class JsonSerde(object):
+        class JsonSerde:
             def serialize(self, key, value):
                 if isinstance(value, dict):
                     return json.dumps(value).encode('UTF-8'), 1

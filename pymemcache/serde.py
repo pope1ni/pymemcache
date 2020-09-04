@@ -92,7 +92,7 @@ def python_memcache_deserializer(key, value, flags):
     return value
 
 
-class PickleSerde(object):
+class PickleSerde:
     """
     An object which implements the serialization/deserialization protocol for
     :py:class:`pymemcache.client.base.Client` and its descendants using the
@@ -119,7 +119,7 @@ class PickleSerde(object):
         return python_memcache_deserializer(key, value, flags)
 
 
-class LegacyWrappingSerde(object):
+class LegacyWrappingSerde:
     """
     This class defines how to wrap legacy de/serialization functions into a
     'serde' object which implements '.serialize' and '.deserialize' methods.

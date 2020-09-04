@@ -14,7 +14,7 @@ from pymemcache.serde import LegacyWrappingSerde
 from pymemcache.client.base import check_key_helper
 
 
-class MockMemcacheClient(object):
+class MockMemcacheClient:
     """
     A (partial) in-memory mock for Clients.
 

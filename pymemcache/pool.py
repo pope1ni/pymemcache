@@ -17,7 +17,7 @@ import contextlib
 import threading
 
 
-class ObjectPool(object):
+class ObjectPool:
     """A pool of objects that release/creates/destroys as needed."""
 
     def __init__(self, obj_creator,

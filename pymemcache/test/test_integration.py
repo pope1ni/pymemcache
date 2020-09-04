@@ -239,7 +239,7 @@ def test_misc(client_class, host, port, socket_module):
 
 @pytest.mark.integration()
 def test_serialization_deserialization(host, port, socket_module):
-    class JsonSerde(object):
+    class JsonSerde:
         def serialize(self, key, value):
             return json.dumps(value).encode('ascii'), 1
 

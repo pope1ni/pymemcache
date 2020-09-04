@@ -128,7 +128,7 @@ def normalize_server_spec(server):
     return (host, port)
 
 
-class Client(object):
+class Client:
     """
     A client for a single memcached server.
 
@@ -181,7 +181,7 @@ class Client(object):
 
      .. code-block:: python
 
-         class JSONSerde(object):
+         class JSONSerde:
              def serialize(self, key, value):
                  if isinstance(value, str):
                      return value, 1
@@ -1027,7 +1027,7 @@ class Client(object):
         self.delete(key, noreply=True)
 
 
-class PooledClient(object):
+class PooledClient:
     """A thread-safe pool of clients (with the same client api).
 
     Args:
