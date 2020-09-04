@@ -1246,12 +1246,12 @@ class TestMockClient(ClientTestMixin, unittest.TestCase):
         class JsonSerde:
             def serialize(self, key, value):
                 if isinstance(value, dict):
-                    return json.dumps(value).encode('UTF-8'), 1
+                    return json.dumps(value).encode(), 1
                 return value, 0
 
             def deserialize(self, key, value, flags):
                 if flags == 1:
-                    return json.loads(value.decode('UTF-8'))
+                    return json.loads(value.decode())
                 return value
 
         client = self.make_client([

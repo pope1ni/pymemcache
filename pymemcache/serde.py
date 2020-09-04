@@ -45,7 +45,7 @@ def _python_memcache_serializer(key, value, pickle_version=None):
 
     elif value_type is str:
         flags |= FLAG_TEXT
-        value = value.encode('utf8')
+        value = value.encode()
 
     elif value_type is int:
         # FIXME: Should we consider always using FLAG_LONG for int in Python 3?
@@ -75,7 +75,7 @@ def python_memcache_deserializer(key, value, flags):
         return value
 
     elif flags & FLAG_TEXT:
-        return value.decode('utf8')
+        return value.decode()
 
     elif flags & FLAG_INTEGER or flags & FLAG_LONG:
         return int(value)

@@ -83,7 +83,7 @@ def check_key_helper(key, allow_unicode_keys, key_prefix=b''):
     """Checks key and add key_prefix."""
     if allow_unicode_keys:
         if isinstance(key, str):
-            key = key.encode('utf8')
+            key = key.encode()
     elif isinstance(key, str):
         try:
             if isinstance(key, bytes):
