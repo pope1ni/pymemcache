@@ -4,9 +4,8 @@ from unittest import TestCase
 from pymemcache.serde import (pickle_serde,
                               PickleSerde,
                               FLAG_BYTES,
-                              FLAG_PICKLE, FLAG_INTEGER, FLAG_LONG, FLAG_TEXT)
+                              FLAG_PICKLE, FLAG_INTEGER, FLAG_TEXT)
 import pytest
-import six
 import pickle
 
 
@@ -50,11 +49,8 @@ class TestSerde(TestCase):
     def test_long(self):
         # long only exists with Python 2, so we're just testing for another
         # integer with Python 3
-        if six.PY2:
-            expected_flags = FLAG_LONG
-        else:
-            expected_flags = FLAG_INTEGER
-        self.check(123123123123123123123, expected_flags)
+        # FIXME: Should we consider always using FLAG_LONG for int in Python 3?
+        self.check(123123123123123123123, FLAG_INTEGER)
 
     def test_pickleable(self):
         self.check({'a': 'dict'}, FLAG_PICKLE)

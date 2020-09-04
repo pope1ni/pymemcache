@@ -54,11 +54,8 @@ def _python_memcache_serializer(key, value, pickle_version=None):
         value = value.encode('utf8')
 
     elif value_type is int:
+        # FIXME: Should we consider always using FLAG_LONG for int in Python 3?
         flags |= FLAG_INTEGER
-        value = "%d" % value
-
-    elif six.PY2 and value_type is long_type:
-        flags |= FLAG_LONG
         value = "%d" % value
 
     else:
