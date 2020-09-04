@@ -689,8 +689,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
 
         client = self.make_client(
             [b'STORED\r\n', b'STORED\r\n'], serializer=_ser)
-        client.set_many(
-            collections.OrderedDict([(b'a', b's'), (b'b', 0)]), noreply=False)
+        client.set_many({b'a': b's', b'b': 0}, noreply=False)
         assert client.sock.send_bufs == [
             b'set a 0 0 1\r\ns\r\nset b 1 0 1\r\n0\r\n'
         ]
@@ -701,18 +700,14 @@ class TestClient(ClientTestMixin, unittest.TestCase):
 
         client = self.make_client(
             [b'STORED\r\n', b'STORED\r\n'], serializer=_ser)
-        client.set_many(
-            collections.OrderedDict([(b'a', b's'), (b'b', 0)]),
-            noreply=False, flags=5)
+        client.set_many({b'a': b's', b'b': 0}, noreply=False, flags=5)
         assert client.sock.send_bufs == [
             b'set a 5 0 1\r\ns\r\nset b 5 0 1\r\n0\r\n'
         ]
 
     def test_explicit_flags(self):
         client = self.make_client([b'STORED\r\n', b'STORED\r\n'])
-        client.set_many(
-            collections.OrderedDict([(b'a', b's'), (b'b', 0)]),
-            noreply=False, flags=5)
+        client.set_many({b'a': b's', b'b': 0}, noreply=False, flags=5)
         assert client.sock.send_bufs == [
             b'set a 5 0 1\r\ns\r\nset b 5 0 1\r\n0\r\n'
         ]
