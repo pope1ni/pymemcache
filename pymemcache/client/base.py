@@ -830,7 +830,7 @@ class Client(object):
 
     def _check_integer(self, value, name):
         """Check that a value is an integer and encode it as a binary string"""
-        if not isinstance(value, six.integer_types):
+        if not isinstance(value, int):
             raise MemcacheIllegalInputError(
                 '%s must be integer, got bad value: %r' % (name, value)
             )
@@ -844,7 +844,7 @@ class Client(object):
         The value will be (re)encoded so that we can accept strings or bytes.
         """
         # convert non-binary values to binary
-        if isinstance(cas, (six.integer_types, str)):
+        if isinstance(cas, (int, str)):
             try:
                 cas = str(cas).encode(self.encoding)
             except UnicodeEncodeError:
