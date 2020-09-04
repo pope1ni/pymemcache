@@ -18,7 +18,6 @@ from builtins import bytes as newbytes
 from collections import defaultdict
 import json
 import pytest
-import six
 
 from pymemcache.client.base import Client
 from pymemcache.exceptions import (
@@ -346,19 +345,19 @@ def test_errors(client_class, host, port, socket_module):
         _key_too_long()
 
     def _unicode_key_in_set():
-        client.set(six.u('\u0FFF'), b'value', noreply=False)
+        client.set('\u0FFF', b'value', noreply=False)
 
     with pytest.raises(MemcacheClientError):
         _unicode_key_in_set()
 
     def _unicode_key_in_get():
-        client.get(six.u('\u0FFF'))
+        client.get('\u0FFF')
 
     with pytest.raises(MemcacheClientError):
         _unicode_key_in_get()
 
     def _unicode_value_in_set():
-        client.set(b'key', six.u('\u0FFF'), noreply=False)
+        client.set(b'key', '\u0FFF', noreply=False)
 
     with pytest.raises(MemcacheClientError):
         _unicode_value_in_set()
