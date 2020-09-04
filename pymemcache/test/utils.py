@@ -87,8 +87,8 @@ class MockMemcacheClient:
         if isinstance(value, str):
             try:
                 value = value.encode(self.encoding)
-            except (UnicodeEncodeError, UnicodeDecodeError):
-                raise MemcacheIllegalInputError
+            except (UnicodeEncodeError, UnicodeDecodeError) as e:
+                raise MemcacheIllegalInputError from e
 
         value, flags = self.serde.serialize(key, value)
 
@@ -146,8 +146,8 @@ class MockMemcacheClient:
             if isinstance(value, str):
                 try:
                     value = value.encode(self.encoding)
-                except (UnicodeEncodeError, UnicodeDecodeError):
-                    raise MemcacheIllegalInputError
+                except (UnicodeEncodeError, UnicodeDecodeError) as e:
+                    raise MemcacheIllegalInputError from e
             self.set(key, value + current, expire, noreply, flags=flags)
         return True
 
@@ -157,8 +157,8 @@ class MockMemcacheClient:
             if isinstance(value, str):
                 try:
                     value = value.encode(self.encoding)
-                except (UnicodeEncodeError, UnicodeDecodeError):
-                    raise MemcacheIllegalInputError
+                except (UnicodeEncodeError, UnicodeDecodeError) as e:
+                    raise MemcacheIllegalInputError from e
             self.set(key, current + value, expire, noreply, flags=flags)
         return True
 

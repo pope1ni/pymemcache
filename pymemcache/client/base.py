@@ -90,8 +90,8 @@ def check_key_helper(key, allow_unicode_keys, key_prefix=b''):
                 key = key.decode().encode('ascii')
             else:
                 key = key.encode('ascii')
-        except (UnicodeEncodeError, UnicodeDecodeError):
-            raise MemcacheIllegalInputError("Non-ASCII key: %r" % key)
+        except (UnicodeEncodeError, UnicodeDecodeError) as e:
+            raise MemcacheIllegalInputError("Non-ASCII key: %r" % key) from e
 
     key = key_prefix + key
     parts = key.split()
@@ -845,9 +845,10 @@ class Client:
         if isinstance(cas, (int, str)):
             try:
                 cas = str(cas).encode(self.encoding)
-            except UnicodeEncodeError:
+            except UnicodeEncodeError as e:
                 raise MemcacheIllegalInputError(
-                    'non-ASCII cas value: %r' % cas)
+                    'non-ASCII cas value: %r' % cas,
+                ) from e
         elif not isinstance(cas, bytes):
             raise MemcacheIllegalInputError(
                 'cas must be integer, string, or bytes, got bad value: %r' % cas
@@ -874,7 +875,9 @@ class Client:
             try:
                 _, key, flags, size = line.split()
             except Exception as e:
-                raise ValueError("Unable to parse line %s: %s" % (line, e))
+                raise ValueError(
+                    "Unable to parse line %s: %s" % (line, e),
+                ) from e
 
         buf, value = _readvalue(self.sock, buf, int(size))
         key = remapped_keys[key]
@@ -954,7 +957,8 @@ class Client:
                     data = str(data).encode(self.encoding)
                 except UnicodeEncodeError as e:
                     raise MemcacheIllegalInputError(
-                            "Data values must be binary-safe: %s" % e)
+                        "Data values must be binary-safe: %s" % e,
+                    ) from e
 
             cmds.append(name + b' ' + key + b' ' +
                         str(data_flags).encode(self.encoding) +
