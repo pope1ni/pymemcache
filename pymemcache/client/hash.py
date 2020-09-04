@@ -272,23 +272,16 @@ class HashClient:
 
             return failed
 
-        # Connecting to the server fail, we should enter
-        # retry mode
-        except OSError:
-            self._mark_failed_server(client.server)
+        except Exception as e:
+            # Connecting to the server fail, we should enter retry mode.
+            if isinstance(e, OSError):
+                self._mark_failed_server(client.server)
 
-            # if we haven't enabled ignore_exc, don't move on gracefully, just
-            # raise the exception
+            # Don't move on gracefully if we haven't enabled ignore_exc.
             if not self.ignore_exc:
                 raise
 
-            return list(set(values) - set(succeeded))
-        except Exception:
-            # any exceptions that aren't OSError we need to handle
-            # gracefully as well
-            if not self.ignore_exc:
-                raise
-
+            # Otherwise gracefully handle any other exception.
             return list(set(values) - set(succeeded))
 
     def _mark_failed_server(self, server):
