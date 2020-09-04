@@ -41,7 +41,7 @@ def test_get_many_set_many():
     assert result == {b"h": 1}
 
     # Convert keys into bytes
-    d = {k.encode('ascii'): v for k, v in dict(h=1, e=2, z=3).items()}
+    d = {k.encode('ascii'): v for k, v in {'h': 1, 'e': 2, 'z': 3}.items()}
     client.set_many(d)
     assert client.get_many([b"h", b"e", b"z", b"o"]) == d
 
@@ -62,7 +62,7 @@ def test_get_many_set_many_non_ascii_values():
     # Convert keys into bytes
     d = {
         k.encode('ascii'): v for k, v in
-        dict(h=non_ascii_1, e=non_ascii_2, z=non_ascii_3).items()
+        {'h': non_ascii_1, 'e': non_ascii_2, 'z': non_ascii_3}.items()
     }
     client.set_many(d)
     assert client.get_many([b"h", b"e", b"z", b"o"]) == d
