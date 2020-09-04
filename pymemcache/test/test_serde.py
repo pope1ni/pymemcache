@@ -40,8 +40,8 @@ class TestSerde(TestCase):
         self.check(b'\xc2\xa3 $ \xe2\x82\xac', FLAG_BYTES)  # £ $ €
 
     def test_unicode(self):
-        self.check(u'value', FLAG_TEXT)
-        self.check(u'£ $ €', FLAG_TEXT)
+        self.check('value', FLAG_TEXT)
+        self.check('£ $ €', FLAG_TEXT)
 
     def test_int(self):
         self.check(1, FLAG_INTEGER)

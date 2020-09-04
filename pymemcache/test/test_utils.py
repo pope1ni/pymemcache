@@ -15,10 +15,10 @@ def test_get_set():
 @pytest.mark.unit()
 def test_get_set_unicide_key():
     client = MockMemcacheClient()
-    assert client.get(u"hello") is None
+    assert client.get("hello") is None
 
     client.set(b"hello", 12)
-    assert client.get(u"hello") == 12
+    assert client.get("hello") == 12
 
 
 @pytest.mark.unit()

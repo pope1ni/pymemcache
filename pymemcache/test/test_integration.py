@@ -65,7 +65,7 @@ def test_get_set_unicode_key(client_class, host, port, socket_module):
                           allow_unicode_keys=True)
     client.flush_all()
 
-    key = u"こんにちは"
+    key = "こんにちは"
     value = b'hello'
     key2 = 'my☃'
     value2 = b'value2'
@@ -272,15 +272,14 @@ def serde_serialization_helper(client_class, host, port,
     client.flush_all()
 
     check(b'byte string')
-    check(u'unicode string')
+    check('unicode string')
     check('olé')
-    check(u'olé')
     check(1)
     check(123123123123123123123)
     check({'a': 'pickle'})
-    check([u'one pickle', u'two pickle'])
+    check(['one pickle', 'two pickle'])
     testdict = defaultdict(int)
-    testdict[u'one pickle']
+    testdict['one pickle']
     testdict[b'two pickle']
     check(testdict)
 

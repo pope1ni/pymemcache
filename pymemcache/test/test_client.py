@@ -165,7 +165,7 @@ class ClientTestMixin(object):
         client = self.make_client([b''])
 
         def _set():
-            client.set(u'\u0FFF', b'value', noreply=False)
+            client.set('\u0FFF', b'value', noreply=False)
 
         with pytest.raises(MemcacheIllegalInputError):
             _set()
@@ -173,7 +173,7 @@ class ClientTestMixin(object):
     def test_set_unicode_key_ok(self):
         client = self.make_client([b'STORED\r\n'], allow_unicode_keys=True)
 
-        result = client.set(u'\u0FFF', b'value', noreply=False)
+        result = client.set('\u0FFF', b'value', noreply=False)
         assert result is True
 
     def test_set_unicode_key_ok_snowman(self):
@@ -204,7 +204,7 @@ class ClientTestMixin(object):
         client = self.make_client([b''])
 
         def _set():
-            client.set(b'key', u'\u0FFF', noreply=False)
+            client.set(b'key', '\u0FFF', noreply=False)
 
         with pytest.raises(MemcacheIllegalInputError):
             _set()
@@ -353,7 +353,7 @@ class ClientTestMixin(object):
         client = self.make_client([b''])
 
         def _get():
-            client.get(u'\u0FFF')
+            client.get('\u0FFF')
 
         with pytest.raises(MemcacheIllegalInputError):
             _get()
@@ -476,7 +476,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
 
         with pytest.raises(MemcacheIllegalInputError):
             # non-ASCII digit
-            client.cas(b'key', b'value', u'⁰', noreply=False)
+            client.cas(b'key', b'value', '⁰', noreply=False)
 
     def test_cas_stored(self):
         client = self.make_client([b'STORED\r\n'])
@@ -969,7 +969,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
             client.get('my☃'*150)
 
         with pytest.raises(MemcacheClientError):
-            client.get(u'\u0FFF'*150)
+            client.get('\u0FFF'*150)
 
     def test_key_contains_space(self):
         client = self.make_client([b'END\r\n'])
@@ -980,7 +980,7 @@ class TestClient(ClientTestMixin, unittest.TestCase):
         client = self.make_client([b'END\r\n'])
 
         with pytest.raises(MemcacheClientError):
-            client.get(u'\u3053\u3093\u306b\u3061\u306f')
+            client.get('\u3053\u3093\u306b\u3061\u306f')
 
     def _default_noreply_false(self, cmd, args, response):
         client = self.make_client(response, default_noreply=False)
