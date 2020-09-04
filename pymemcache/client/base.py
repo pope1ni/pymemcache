@@ -1261,7 +1261,7 @@ class PooledClient:
 
 
 def _readline(sock, buf):
-    """Read line of text from the socket.
+    r"""Read line of text from the socket.
 
     Read a line of text (delimited by "\r\n") from the socket, and
     return that line along with any trailing characters read from the
@@ -1309,7 +1309,7 @@ def _readline(sock, buf):
 
 
 def _readvalue(sock, buf, size):
-    """Read specified amount of bytes from the socket.
+    r"""Read specified amount of bytes from the socket.
 
     Read size bytes, followed by the "\r\n" characters, from the socket,
     and return those bytes and any trailing bytes read after the "\r\n".
