@@ -39,7 +39,7 @@ conventions and is linted using [flake8](http://flake8.pycqa.org/).
 The tests use [pytest](https://docs.pytest.org/) and can be run using `tox` or
 directly via:
 
-    py.test pymemcache/test/
+    pytest pymemcache/test/
 
 Note that the tests require a local memcached instance.
 
