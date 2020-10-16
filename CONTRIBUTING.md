@@ -32,7 +32,7 @@ To increase the chances that your pull request will be accepted:
 ## Coding Style
 
 This project follows [PEP 8](https://www.python.org/dev/peps/pep-0008/)
-conventions and is linted using [flake8](http://flake8.pycqa.org/).
+conventions and is linted using [flake8](https://flake8.pycqa.org/).
 
 ## Testing
 

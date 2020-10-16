@@ -147,7 +147,7 @@ class Client:
      Lastly, the ``socket_module`` allows you to specify an alternate socket
      implementation (such as `gevent.socket`_).
 
-     .. _gevent.socket: http://www.gevent.org/api/gevent.socket.html
+     .. _gevent.socket: https://www.gevent.org/api/gevent.socket.html
 
     *Keys and Values*
 

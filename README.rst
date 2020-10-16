@@ -104,21 +104,21 @@ Mixpanel's pure Python memcached client:
 Credits
 =======
 
-* `Charles Gordon <http://github.com/cgordon>`_
-* `Dave Dash <http://github.com/davedash>`_
-* `Dan Crosta <http://github.com/dcrosta>`_
-* `Julian Berman <http://github.com/Julian>`_
-* `Mark Shirley <http://github.com/maspwr>`_
-* `Tim Bart <http://github.com/pims>`_
-* `Thomas Orozco <http://github.com/krallin>`_
-* `Marc Abramowitz <http://github.com/msabramo>`_
-* `Marc-Andre Courtois <http://github.com/mcourtois>`_
-* `Julien Danjou <http://github.com/jd>`_
-* `INADA Naoki <http://github.com/methane>`_
-* `James Socol <http://github.com/jsocol>`_
-* `Joshua Harlow <http://github.com/harlowja>`_
-* `John Anderson <http://github.com/sontek>`_
-* `Adam Chainz <http://github.com/adamchainz>`_
+* `Charles Gordon <https://github.com/cgordon>`_
+* `Dave Dash <https://github.com/davedash>`_
+* `Dan Crosta <https://github.com/dcrosta>`_
+* `Julian Berman <https://github.com/Julian>`_
+* `Mark Shirley <https://github.com/maspwr>`_
+* `Tim Bart <https://github.com/pims>`_
+* `Thomas Orozco <https://github.com/krallin>`_
+* `Marc Abramowitz <https://github.com/msabramo>`_
+* `Marc-Andre Courtois <https://github.com/mcourtois>`_
+* `Julien Danjou <https://github.com/jd>`_
+* `INADA Naoki <https://github.com/methane>`_
+* `James Socol <https://github.com/jsocol>`_
+* `Joshua Harlow <https://github.com/harlowja>`_
+* `John Anderson <https://github.com/sontek>`_
+* `Adam Chainz <https://github.com/adamchainz>`_
 * `Ernest W. Durbin III <https://github.com/ewdurbin>`_
 * `Remco van Oosterhout <https://github.com/Vhab>`_
 * `Nicholas Charriere <https://github.com/nichochar>`_
