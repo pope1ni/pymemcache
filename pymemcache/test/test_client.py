@@ -1118,6 +1118,7 @@ class TestClientSocketConnect(unittest.TestCase):
             client = Client(server)
             client._connect()
             assert client.sock.family == socket.AF_UNIX
+            client.close()
 
     def test_socket_connect_closes_on_failure(self):
         server = ("example.com", 11211)
