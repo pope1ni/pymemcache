@@ -34,7 +34,7 @@ jobs:
         python setup.py check --restructuredtext
     - name: Tests
       run: |
-        pip install -r test-requirements.txt
+        pip install --requirement=test-requirements.txt
         pytest pymemcache/test/ \
             -m 'unit or integration' \
             --port ${{ job.services.memcached.ports[11211] }} \
