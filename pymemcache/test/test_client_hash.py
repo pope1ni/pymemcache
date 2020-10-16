@@ -27,7 +27,7 @@ class TestHashClient(ClientTestMixin, unittest.TestCase):
         ip = '127.0.0.1'
 
         for vals in mock_socket_values:
-            s = '%s:%s' % (ip, current_port)
+            s = f'{ip}:{current_port}'
             c = self.make_client_pool(
                 (ip, current_port),
                 vals,
@@ -369,12 +369,12 @@ class TestHashClient(ClientTestMixin, unittest.TestCase):
 
     def test_mixed_inet_and_unix_sockets(self):
         expected = {
-            '/tmp/pymemcache.{pid}'.format(pid=os.getpid()),
+            f'/tmp/pymemcache.{os.getpid()}',
             ('127.0.0.1', 11211),
             ('::1', 11211),
         }
         client = HashClient([
-            '/tmp/pymemcache.{pid}'.format(pid=os.getpid()),
+            f'/tmp/pymemcache.{os.getpid()}',
             '127.0.0.1',
             '127.0.0.1:11211',
             '[::1]',

@@ -50,7 +50,7 @@ def _python_memcache_serializer(key, value, pickle_version=None):
     elif value_type is int:
         # FIXME: Should we consider always using FLAG_LONG for int in Python 3?
         flags |= FLAG_INTEGER
-        value = "%d" % value
+        value = f"{value:d}"
 
     else:
         flags |= FLAG_PICKLE

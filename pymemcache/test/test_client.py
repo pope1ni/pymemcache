@@ -1112,7 +1112,7 @@ class TestClientSocketConnect(unittest.TestCase):
                                                socket.TCP_NODELAY, 1)]
 
     def test_socket_connect_unix(self):
-        server = '/tmp/pymemcache.{pid}'.format(pid=os.getpid())
+        server = f'/tmp/pymemcache.{os.getpid()}'
 
         with MockUnixSocketServer(server):
             client = Client(server)

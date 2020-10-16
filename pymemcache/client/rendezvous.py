@@ -27,15 +27,14 @@ class RendezvousHash:
         if node in self.nodes:
             self.nodes.remove(node)
         else:
-            raise ValueError("No such node %s to remove" % (node))
+            raise ValueError(f"No such node {node} to remove")
 
     def get_node(self, key):
         high_score = -1
         winner = None
 
         for node in self.nodes:
-            score = self.hash_function(
-                "%s-%s" % (node, key))
+            score = self.hash_function(f"{node}-{key}")
 
             if score > high_score:
                 (high_score, winner) = (score, node)

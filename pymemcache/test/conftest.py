@@ -64,7 +64,7 @@ def keys(request):
 
 @pytest.fixture(scope='session')
 def pairs(size, keys):
-    return {'pymemcache_test:%d' % i: 'X' * size for i in range(keys)}
+    return {f'pymemcache_test:{i:d}': 'X' * size for i in range(keys)}
 
 
 @pytest.fixture(scope='session')

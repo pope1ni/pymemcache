@@ -778,7 +778,8 @@ class Client:
 
         if before != b'VERSION':
             raise MemcacheUnknownError(
-                "Received unexpected response: %s" % results[0])
+                f"Received unexpected response: {results[0]}"
+            )
         return after
 
     def flush_all(self, delay=0, noreply=None):
@@ -834,7 +835,7 @@ class Client:
         """Check that a value is an integer and encode it as a binary string"""
         if not isinstance(value, int):
             raise MemcacheIllegalInputError(
-                '%s must be integer, got bad value: %r' % (name, value)
+                f'{name} must be integer, got bad value: {value!r}'
             )
 
         return str(value).encode(self.encoding)
@@ -879,9 +880,7 @@ class Client:
             try:
                 _, key, flags, size = line.split()
             except Exception as e:
-                raise ValueError(
-                    "Unable to parse line %s: %s" % (line, e),
-                ) from e
+                raise ValueError(f"Unable to parse line {line}: {e}") from e
 
         buf, value = _readvalue(self.sock, buf, int(size))
         key = remapped_keys[key]
@@ -961,7 +960,7 @@ class Client:
                     data = str(data).encode(self.encoding)
                 except UnicodeEncodeError as e:
                     raise MemcacheIllegalInputError(
-                        "Data values must be binary-safe: %s" % e,
+                        f"Data values must be binary-safe: {e}",
                     ) from e
 
             cmds.append(name + b' ' + key + b' ' +

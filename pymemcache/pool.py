@@ -62,9 +62,9 @@ class ObjectPool:
             if not self._free_objs:
                 curr_count = len(self._used_objs)
                 if curr_count >= self.max_size:
-                    raise RuntimeError("Too many objects,"
-                                       " %s >= %s" % (curr_count,
-                                                      self.max_size))
+                    raise RuntimeError(
+                        f"Too many objects, {curr_count} >= {self.max_size}"
+                    )
                 obj = self._obj_creator()
                 self._used_objs.append(obj)
                 return obj
