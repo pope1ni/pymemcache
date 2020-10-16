@@ -96,7 +96,7 @@ The python-memcached library (another pure-Python library):
   https://github.com/linsomniac/python-memcached
 
 Mixpanel's Blog post about their memcached client for Python:
-  http://code.mixpanel.com/2012/07/16/we-went-down-so-we-wrote-a-better-pure-python-memcache-client/
+  https://engineering.mixpanel.com/2012/07/16/we-went-down-so-we-wrote-a-better-pure-python-memcache-client/
 
 Mixpanel's pure Python memcached client:
   https://github.com/mixpanel/memcache_client
