@@ -5,8 +5,8 @@ pymemcache
     :target: https://pypi.python.org/pypi/pymemcache
 
 .. image:: https://readthedocs.org/projects/pymemcache/badge/?version=master
-        :target: https://pymemcache.readthedocs.io/en/latest/
-        :alt: Master Documentation Status
+    :target: https://pymemcache.readthedocs.io/en/latest/
+    :alt: Master Documentation Status
 
 A comprehensive, fast, pure-Python memcached client.
 
@@ -26,7 +26,7 @@ Install from pip:
 
 .. code-block:: bash
 
-  pip install pymemcache
+    pip install pymemcache
 
 For development, clone from github and run the tests:
 
